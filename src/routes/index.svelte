@@ -16,10 +16,15 @@
 </script>
 
 <h1>Resize Demo</h1>
+<h2>
+	See: <pre><code>./src/routes/index.svelte</code></pre>
+</h2>
 
 <div bind:this={target} style="--max-height: {maxHeight}px; min-width: {minWidth}px; {style}">
 	<p>Resize Me</p>
 	<p>Minimum width: {minWidth}</p>
+	<p>Maximum height: {maxHeight}</p>
+	<p>Style: {style}</p>
 
 	{#if target}
 		<Resizable {target} bind:style />
@@ -40,13 +45,5 @@
 		-moz-border-radius: 8px;
 		border-radius: 8px;
 		background-color: rgba(250, 128, 114, 0.418);
-		-webkit-transition: color 0.25s ease-in;
-		-moz-transition: color 0.25s ease-in;
-		transition: color 0.25s ease-in;
-	}
-
-	div:hover {
-		/* background-color: #00ff00de; */
-		color: rgba(26, 26, 26, 0.493);
 	}
 </style>

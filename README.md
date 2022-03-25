@@ -1,4 +1,6 @@
-# Resize handles for any HTML Node element
+# Resize handle for any HTML Node element
+
+![Demo](resizable.gif)
 
 ```js
 <script>
