@@ -1,18 +1,9 @@
 <script>
-	import { onMount } from 'svelte';
-	import Resizable from '$lib/Resizable.svelte';
-
-	let target;
-	let style = '';
+	import Resizer from '$lib/Resizer.svelte';
 
 	// you can also set other non-resizable vars
 	let minWidth = 200;
 	let maxHeight = 400;
-	let mounted;
-
-	onMount(async () => {
-		mounted = true;
-	});
 </script>
 
 <h1>Resize Demo</h1>
@@ -20,15 +11,12 @@
 	See: <pre><code>./src/routes/index.svelte</code></pre>
 </h2>
 
-<div bind:this={target} style="--max-height: {maxHeight}px; min-width: {minWidth}px; {style}">
-	<p>Resize Me</p>
+<div style="--max-height: {maxHeight}px; min-width: {minWidth}px;">
+	<p>Insert Resizer as child of the HTMLElement you wan to Resize.</p>
 	<p>Minimum width: {minWidth}</p>
 	<p>Maximum height: {maxHeight}</p>
-	<p>Style: {style}</p>
 
-	{#if target}
-		<Resizable {target} bind:style />
-	{/if}
+	<Resizer />
 </div>
 
 <style>
