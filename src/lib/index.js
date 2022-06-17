@@ -1,2 +1,2 @@
-export { resize } from './resizable.js';
-export { resize as default } from './resizable.js';
+export { default as Resizer } from './Resizer.svelte';
+export { default as default } from './Resizer.svelte';

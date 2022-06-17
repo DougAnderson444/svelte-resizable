@@ -1,78 +1,73 @@
 <script>
-	export let target;
-	export let style;
+	import PointerTracker from '@douganderson444/pointer-tracker';
 
-	const baseStyle = style;
+	let pointerTracker;
+	let shiftX;
+	let shiftY;
 
-	let width = target?.clientWidth || 0;
-	let height = target?.clientHeight || 0;
-	let left = 0;
-	let top = 0;
+	function resizable(node) {
+		pointerTracker = new PointerTracker(node, {
+			eventListenerOptions: { capture: true }, // catch the event before it goes to child in the DOM tree
+			start: (pointer, event) => {
+				console.log({ pointer, event });
+				shiftX = pointer.clientX - node.getBoundingClientRect().left;
+				shiftY = pointer.clientY - node.getBoundingClientRect().top;
 
-	let newSize = { width, height };
-	let initSize = { width: 0, height: 0 };
-	let resizeInitPos = { x: 0, y: 0 };
+				event.preventDefault();
+				event.stopPropagation();
+				return true;
+			},
+			move: (previousPointers, changedPointers, event) => {
+				event.stopPropagation(); // continue exclusive rights over the pointer from DOM tree
 
-	let active = false; // resize active or not
+				resizePointerMove({
+					pageX: pointerTracker.currentPointers[0].pageX,
+					pageY: pointerTracker.currentPointers[0].pageY
+				});
+			},
+			end: (pointer, event, cancelled) => {
+				// nothing to do here
+			}
+		});
 
-	$: style = `left: ${left}px; 
-	top: ${top}px; 
-	width: ${active ? newSize.width : width}px; 
-	height:${active ? newSize.height : height}px; ${baseStyle}`;
-
-	function resizePointerDown(e) {
-		console.log('Pointer down');
-		e.stopPropagation();
-		const { pageX, pageY } = e;
-
-		resizeInitPos = { x: pageX, y: pageY };
-		initSize = { width, height };
-		newSize = { width, height };
-
-		active = true;
-
-		window.addEventListener('pointermove', resizePointerMove);
-		window.addEventListener('pointerup', resizePointerUp);
-	}
-
-	function resizePointerMove({ pageX, pageY }) {
-		newSize.width = initSize.width + pageX - resizeInitPos.x;
-		newSize.height = initSize.height + pageY - resizeInitPos.y;
-	}
-
-	function resizePointerUp(e) {
-		e.stopPropagation();
-
-		width = newSize.width;
-		height = newSize.height;
-
-		active = false;
-
-		window.removeEventListener('pointermove', resizePointerMove);
-		window.removeEventListener('pointerup', resizePointerUp);
+		function resizePointerMove({ pageX, pageY }) {
+			const currentRect = node.parentNode.getBoundingClientRect();
+			node.parentNode.style.width = pageX - shiftX - currentRect.left + 'px';
+			node.parentNode.style.height = pageY - shiftY - currentRect.top + 'px';
+		}
 	}
 </script>
 
-<div class="svlt-resizer" on:pointerdown|preventDefault={resizePointerDown} />
+<div class="svlt-resizer" use:resizable />
 
 <style>
+	:root {
+		--width: 2em;
+		--line-width: 0.4em;
+	}
 	.svlt-resizer {
 		user-select: none;
-		width: 2em;
-		height: 2em;
+		padding: 0.5em;
+
+		width: 2.5em;
+		height: 2.5em;
 		position: absolute;
 		right: 0;
 		bottom: 0;
 		cursor: se-resize;
+		transform: translate(calc(var(--width) / 2), calc(var(--width) / 2));
+		transform-origin: 0 0;
 	}
 	.svlt-resizer::after {
 		content: '';
 		position: absolute;
-		right: 0.4em;
-		bottom: 0.4em;
-		width: 0.6em;
-		height: 0.6em;
-		border-right: 0.25em dashed rgb(0, 0, 0, 0.4);
-		border-bottom: 0.25em dashed rgba(0, 0, 0, 0.4);
+		right: calc(-1 * var(--line-width) / 2);
+		bottom: calc(-1 * var(--line-width) / 2);
+		width: calc(var(--width) / 2);
+		height: calc(var(--width) / 2);
+		border-right: var(--line-width) solid rgba(107, 107, 107, 0.5);
+		border-bottom: var(--line-width) solid rgba(133, 133, 133, 0.5);
+		transform: translate(calc(-1 * var(--width) / 2), calc(-1 * var(--width) / 2));
+		transform-origin: 0 0;
 	}
 </style>
