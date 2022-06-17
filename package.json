@@ -1,6 +1,8 @@
 {
 	"name": "@douganderson444/svelte-resizable",
 	"version": "0.0.4",
+	"module": "index.js",
+	"main": "idex.js",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
