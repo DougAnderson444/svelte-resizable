@@ -4,8 +4,6 @@
 
 	const baseStyle = style;
 
-	console.log({ target }, target?.offsetTop);
-
 	let width = target?.clientWidth || 0;
 	let height = target?.clientHeight || 0;
 	let left = 0;

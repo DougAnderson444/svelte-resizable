@@ -1,6 +1,6 @@
 {
 	"name": "@douganderson444/svelte-resizable",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -14,6 +14,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-static": "^1.0.0-next.34",
 		"@sveltejs/kit": "next",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.5.0",
