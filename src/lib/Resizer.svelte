@@ -8,7 +8,10 @@
 	function resizable(node) {
 		pointerTracker = new PointerTracker(node, {
 			eventListenerOptions: { capture: true }, // catch the event before it goes to child in the DOM tree
+			avoidPointerEvents: false, // pointers dont seem to work
 			start: (pointer, event) => {
+				if (pointerTracker.currentPointers.length === 1) return false; // track only 1 pointer at a time
+
 				console.log({ pointer, event });
 				shiftX = pointer.clientX - node.getBoundingClientRect().left;
 				shiftY = pointer.clientY - node.getBoundingClientRect().top;
@@ -27,6 +30,7 @@
 			},
 			end: (pointer, event, cancelled) => {
 				// nothing to do here
+				console.log('Drag ended');
 			}
 		});
 
