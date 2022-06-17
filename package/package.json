@@ -1,0 +1,29 @@
+{
+  "name": "@douganderson444/svelte-resizable",
+  "version": "0.0.4",
+  "module": "index.js",
+  "svelte": "index.js",
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-static": "^1.0.0-next.34",
+    "@sveltejs/kit": "next",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.5.0",
+    "svelte": "^3.44.0",
+    "svelte-check": "^2.2.6",
+    "svelte-preprocess": "^4.10.1",
+    "svelte2tsx": "^0.5.10",
+    "tslib": "^2.3.1",
+    "typescript": "~4.6.2"
+  },
+  "type": "module",
+  "repository": "https://github.com/DougAnderson444/svelte-resizable",
+  "dependencies": {
+    "@douganderson444/pointer-tracker": "github:DougAnderson444/pointer-tracker"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./index.js",
+    "./Resizer.svelte": "./Resizer.svelte"
+  }
+}

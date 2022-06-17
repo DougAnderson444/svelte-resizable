@@ -2,6 +2,7 @@
 	"name": "@douganderson444/svelte-resizable",
 	"version": "0.0.4",
 	"module": "index.js",
+	"svelte": "index.js",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -22,6 +23,7 @@
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.10.1",
+		"svelte2tsx": "^0.5.10",
 		"tslib": "^2.3.1",
 		"typescript": "~4.6.2"
 	},
