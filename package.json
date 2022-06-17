@@ -1,6 +1,6 @@
 {
 	"name": "@douganderson444/svelte-resizable",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -25,5 +25,8 @@
 		"typescript": "~4.6.2"
 	},
 	"type": "module",
-	"repository": "https://github.com/DougAnderson444/svelte-resizable"
+	"repository": "https://github.com/DougAnderson444/svelte-resizable",
+	"dependencies": {
+		"@douganderson444/pointer-tracker": "github:DougAnderson444/pointer-tracker"
+	}
 }

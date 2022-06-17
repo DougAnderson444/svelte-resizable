@@ -2,6 +2,10 @@
 
 ![Demo](resizable.gif)
 
+## Use
+
+The Resize Component will make it's direct parent element resizable.
+
 ```js
 <script>
 	import Resizable from '$lib/Resizable.svelte';
@@ -16,12 +20,10 @@
 
 <h1>Resize Demo</h1>
 
-<div bind:this={target} style="--max-height: {maxHeight}px; min-width: {minWidth}px; {style}">
-	<p>Resize Me</p>
+<div id='this-is-resizable-now'>
+	<p>Resize My parent HTML element</p>
 
-	{#if target}
-		<Resizable {target} bind:style />
-	{/if}
+	<Resizable />
 </div>
 
 ```
