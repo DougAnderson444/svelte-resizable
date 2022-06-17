@@ -8,7 +8,7 @@
 	function resizable(node) {
 		pointerTracker = new PointerTracker(node, {
 			eventListenerOptions: { capture: true }, // catch the event before it goes to child in the DOM tree
-			avoidPointerEvents: false, // pointers dont seem to work
+			avoidPointerEvents: true, // pointers dont seem to work
 			start: (pointer, event) => {
 				if (pointerTracker.currentPointers.length === 1) return false; // track only 1 pointer at a time
 
