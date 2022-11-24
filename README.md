@@ -23,7 +23,7 @@ The Resize Component will make it's direct parent element resizable.
 <div id='this-is-resizable-now'>
 	<p>Resize My parent HTML element</p>
 
-	<Resizable />
+	<Resizer />
 </div>
 
 ```
