@@ -8,7 +8,7 @@ The Resize Component will make it's direct parent element resizable.
 
 ```js
 <script>
-	import Resizable from '$lib/Resizable.svelte';
+	import { Resizer } from '$lib/Resizable.svelte';
 
 	let target;
 	let style = '';
