@@ -10,7 +10,7 @@ The Resize Component will make it's direct parent element resizable.
 
 ```js
 <script>
-	import { resizable } from '@douganderson444/svelte-resizable';
+  import { resizable } from '@douganderson444/svelte-resizable';
 </script>
 
 <div use:resizable>Go ahead, grab me by the love handles and resize my div.</div>
@@ -18,7 +18,7 @@ The Resize Component will make it's direct parent element resizable.
 
 The directive will set the HTMLElement as `relative` if it detects it as `static`. If it's `absolute` it will leave it as absolute.
 
-## Customis Resizer Handle
+## Customised Resizer Handle
 
 You can use your own custom resizer, just pass your component a param to the Svelte directive. Your component **must** call the resizable-provided `trigger` function with your handle `HTMLElement` as a `param`.
 
