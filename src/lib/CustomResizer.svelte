@@ -1,18 +1,19 @@
 <script>
-	export let handle; // bind this var to your custom handle
-	export let trigger; // passed down from resizable.js
-	$: if (handle) trigger(handle); // let the directive know what/where the resize handle is
+	export let handle;
+	export let trigger;
+	$: if (handle) trigger(handle);
 </script>
 
 <div class="svlt-resizer" bind:this={handle} />
 
 <style>
 	:root {
-		--width: 10px;
+		--width: 3em;
+		--line-width: 0.4em;
 	}
 	.svlt-resizer {
 		user-select: none;
-		padding: 2px;
+		padding: 0.5em;
 
 		width: calc(var(--width) * 2.25);
 		height: calc(var(--width) * 2.25);
@@ -24,15 +25,14 @@
 		transform-origin: 0 0;
 	}
 	.svlt-resizer::after {
-		--line-width: 5px;
 		content: '';
 		position: absolute;
 		right: calc(-1 * var(--line-width) / 2);
 		bottom: calc(-1 * var(--line-width) / 2);
 		width: calc(var(--width) / 2);
 		height: calc(var(--width) / 2);
-		border-right: var(--line-width) solid rgba(107, 107, 107, 0.5);
-		border-bottom: var(--line-width) solid rgba(133, 133, 133, 0.5);
+		border-right: var(--line-width) solid rgba(63, 255, 4, 0.952);
+		border-bottom: var(--line-width) solid rgba(63, 255, 4, 0.952);
 		transform: translate(calc(-1 * var(--width) / 1.1), calc(-1 * var(--width) / 1.1));
 		transform-origin: 0 0;
 	}
