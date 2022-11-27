@@ -14,7 +14,6 @@ const config = {
 			pages: 'docs',
 			assets: 'docs'
 		}),
-		prerender: { default: true },
 		paths: {
 			// change below to your repo name
 			base: process.env.NODE_ENV === 'development' ? '' : '/svelte-resizable'

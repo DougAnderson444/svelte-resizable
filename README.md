@@ -4,26 +4,30 @@
 
 ## Use
 
+See `./src/routes/+page.svelte` for a full demo.
+
 The Resize Component will make it's direct parent element resizable.
 
 ```js
 <script>
-	import { Resizer } from '$lib/Resizable.svelte';
-
-	let target;
-	let style = '';
-
-	// you can also set other non-resizable vars
-	let minWidth = 200;
-	let maxHeight = 400;
+	import { resizable } from '@douganderson444/svelte-resizable';
 </script>
 
-<h1>Resize Demo</h1>
+<div use:resizable>Go ahead, grab me by the love handles and resize my div.</div>
+```
 
-<div id='this-is-resizable-now'>
-	<p>Resize My parent HTML element</p>
+The directive will set the HTMLElement as `relative` if it detects it as `static`. If it's `absolute` it will leave it as absolute.
 
-	<Resizer />
-</div>
+## Customis Resizer Handle
 
+You can use your own custom resizer, just pass your component a param to the Svelte directive. Your component **must** call the resizable-provided `trigger` function with your handle `HTMLElement` as a `param`.
+
+```svelte
+<script>
+	export let myHandle; // bind this var to your custom handle
+	export let trigger; // passed down from resizable.js
+	$: if (myHandle) trigger(myHandle); // let the resizable directive know what/where the resize handle is
+</script>
+
+<div bind:this={myHandle}>💩 Drag me to resize</div>
 ```
