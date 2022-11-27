@@ -1,1 +1,1 @@
-export * from './package/index.js';
+export * from './src/lib/index.js';
