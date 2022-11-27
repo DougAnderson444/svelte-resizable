@@ -6,47 +6,49 @@
 		<link rel="icon" href="/svelte-resizable/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="content-security-policy" content="">
-	<link rel="stylesheet" href="/svelte-resizable/_app/assets/pages/index.svelte-f4f9975a.css">
-	<link rel="modulepreload" href="/svelte-resizable/_app/start-fe4e2c3b.js">
-	<link rel="modulepreload" href="/svelte-resizable/_app/chunks/vendor-08d33ed2.js">
-	<link rel="modulepreload" href="/svelte-resizable/_app/layout.svelte-cd7c2267.js">
-	<link rel="modulepreload" href="/svelte-resizable/_app/pages/index.svelte-b35ef3dc.js">
+		<link href="/svelte-resizable/_app/immutable/assets/_page-e2ffdb3b.css" rel="stylesheet">
+		<link rel="modulepreload" href="/svelte-resizable/_app/immutable/start-b3d70642.js">
+		<link rel="modulepreload" href="/svelte-resizable/_app/immutable/chunks/index-4d0dc8ab.js">
+		<link rel="modulepreload" href="/svelte-resizable/_app/immutable/chunks/singletons-15a3691a.js">
+		<link rel="modulepreload" href="/svelte-resizable/_app/immutable/components/layout.svelte-2f37886a.js">
+		<link rel="modulepreload" href="/svelte-resizable/_app/immutable/components/pages/_page.svelte-7dc0f190.js">
+		<link rel="modulepreload" href="/svelte-resizable/_app/immutable/modules/pages/_page.js-07d4ebd9.js">
+		<link rel="modulepreload" href="/svelte-resizable/_app/immutable/chunks/_page-d86dbbba.js"><!-- HEAD_svelte-dxrrbz_START --><script src="https://cdn.tailwindcss.com"></script><!-- HEAD_svelte-dxrrbz_END -->
 	</head>
 	<body>
 		<div>
 
 
-<h1>Resize Demo</h1>
-<h2>See: <pre><code>./src/routes/index.svelte</code></pre></h2>
-
-<div style="--max-height: 400px; min-width: 200px;" class="svelte-el9xpm"><p>Insert Resizer as child of the HTMLElement you wan to Resize.</p>
-	<p>Minimum width: 200</p>
-	<p>Maximum height: 400</p>
-
-	<div class="svlt-resizer svelte-asfgz"></div>
-</div>
 
 
-		<script type="module" data-hydrate="74bjbn">
-		import { start } from "/svelte-resizable/_app/start-fe4e2c3b.js";
-		start({
-			target: document.querySelector('[data-hydrate="74bjbn"]').parentNode,
-			paths: {"base":"/svelte-resizable","assets":"/svelte-resizable"},
-			session: {},
-			route: true,
-			spa: false,
-			trailing_slash: "never",
-			hydrate: {
-				status: 200,
-				error: null,
-				nodes: [
-					import("/svelte-resizable/_app/layout.svelte-cd7c2267.js"),
-						import("/svelte-resizable/_app/pages/index.svelte-b35ef3dc.js")
-				],
-				params: {},
-				routeId: ""
-			}
-		});
-	</script></div>
+<a href="https://github.com/DougAnderson444/svelte-resizable">https://github.com/DougAnderson444/svelte-resizable</a>
+
+<div class="flex flex-wrap content-start bg-red-100 p-2 h-screen "><div class="basis-auto w-1/3 h-1/3 bg-green-100 m-2 p-2">1</div>
+	<div class="basis-auto w-1/4 h-1/3 bg-purple-100 m-2 p-2">2</div>
+	<div class="basis-auto w-1/4 h-1/3 bg-blue-100 m-2 p-2 text-3xl">3</div>
+	<div class="basis-auto w-1/2 h-1/4 bg-amber-800 m-2 p-2 text-4xl">💩
+	</div></div>
+
+
+		<script type="module" data-sveltekit-hydrate="4g2pzu">
+			import { start } from "/svelte-resizable/_app/immutable/start-b3d70642.js";
+
+			start({
+				env: {},
+				hydrate: {
+					status: 200,
+					error: null,
+					node_ids: [0, 2],
+					params: {},
+					route: {"id":"/"},
+					data: [null,null],
+					form: null
+				},
+				paths: {"base":"/svelte-resizable","assets":"/svelte-resizable"},
+				target: document.querySelector('[data-sveltekit-hydrate="4g2pzu"]').parentNode,
+				version: "1669563255427"
+			});
+		</script>
+	</div>
 	</body>
 </html>
