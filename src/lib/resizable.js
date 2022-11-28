@@ -1,10 +1,9 @@
-import DefaultResizer from './Resizer.svelte';
+import { DefaultResizer } from './index';
 import PointerTracker from '@douganderson444/pointer-tracker';
 
-export let show;
+let show;
 
-export function resizable(node, { Resizer = DefaultResizer, show = true }) {
-	console.log('resizable', show, { Resizer });
+export function resizable(node, { Resizer = DefaultResizer, show = true } = {}) {
 	// check if parent is relative or absolute, if not set it
 	const pos = node.style.position;
 	if (pos !== 'relative' && pos !== 'absolute') {
