@@ -1,7 +1,10 @@
 import DefaultResizer from './Resizer.svelte';
 import PointerTracker from '@douganderson444/pointer-tracker';
 
-export function resizable(node, { Resizer } = { Resizer: DefaultResizer }) {
+export let show;
+
+export function resizable(node, { Resizer = DefaultResizer, show = true }) {
+	console.log('resizable', show, { Resizer });
 	// check if parent is relative or absolute, if not set it
 	const pos = node.style.position;
 	if (pos !== 'relative' && pos !== 'absolute') {
@@ -12,9 +15,22 @@ export function resizable(node, { Resizer } = { Resizer: DefaultResizer }) {
 	let resizer = new Resizer({
 		target: node,
 		props: {
-			trigger: (node) => createHandleTracker(node)
+			trigger: (node) => createHandleTracker(node),
+			show
 		}
 	});
+
+	return {
+		update(newParams) {
+			// the value of `bar` has changed
+			show = newParams.show;
+			resizer.$set({ show });
+		},
+
+		destroy() {
+			// the node has been removed from the DOM
+		}
+	};
 }
 
 function createHandleTracker(node) {
