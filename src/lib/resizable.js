@@ -14,7 +14,7 @@ export function resizable(node, { Resizer = DefaultResizer, show = true } = {}) 
 	let resizer = new Resizer({
 		target: node,
 		props: {
-			trigger: (node) => createHandleTracker(node),
+			trigger: (handle) => createHandleTracker(handle),
 			show
 		}
 	});
