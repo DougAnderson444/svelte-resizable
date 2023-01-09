@@ -1,6 +1,6 @@
 {
 	"name": "@douganderson444/svelte-resizable",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"module": "index.js",
 	"svelte": "index.js",
 	"scripts": {
@@ -26,7 +26,8 @@
 		"svelte-preprocess": "^4.10.1",
 		"svelte2tsx": "^0.5.10",
 		"tslib": "^2.3.1",
-		"typescript": "~4.6.2"
+		"typescript": "~4.6.2",
+		"vite": "^4.0.4"
 	},
 	"type": "module",
 	"repository": "https://github.com/DougAnderson444/svelte-resizable",
