@@ -12,6 +12,7 @@
 <style>
 	:root {
 		--width: 10px;
+		--line-width: 5px;
 	}
 	.svlt-resizer {
 		user-select: none;
@@ -27,7 +28,6 @@
 		transform-origin: 0 0;
 	}
 	.svlt-resizer::after {
-		--line-width: 5px;
 		content: '';
 		position: absolute;
 		right: calc(-1 * var(--line-width) / 2);
