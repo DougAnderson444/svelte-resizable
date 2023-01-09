@@ -34,8 +34,8 @@
 		bottom: calc(-1 * var(--line-width) / 2);
 		width: calc(var(--width) / 2);
 		height: calc(var(--width) / 2);
-		border-right: var(--line-width) solid rgba(107, 107, 107, 0.5);
-		border-bottom: var(--line-width) solid rgba(133, 133, 133, 0.5);
+		border-bottom: var(--line-width) solid rgba(107, 107, 107, 0.5);
+		border-right: var(--line-width) solid rgba(133, 133, 133, 0.5);
 		transform: translate(calc(-1 * var(--width) / 1.1), calc(-1 * var(--width) / 1.1));
 		transform-origin: 0 0;
 	}
