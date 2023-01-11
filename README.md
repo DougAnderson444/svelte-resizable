@@ -1,5 +1,7 @@
 # Resize handle for any HTML Node element
 
+Resize handle for any HTML Node element
+
 ![Demo](resizable.gif)
 
 ## Use
