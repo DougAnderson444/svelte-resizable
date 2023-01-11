@@ -32,7 +32,7 @@ export function resizable(node, { Resizer = DefaultResizer, show = true } = {}) 
 	};
 }
 
-function createHandleTracker(node) {
+function createHandleTracker(handle) {
 	let shiftX;
 	let shiftY;
 
@@ -40,7 +40,7 @@ function createHandleTracker(node) {
 	let height;
 	let dx, dy;
 
-	let pointerTracker = new PointerTracker(node, {
+	let pointerTracker = new PointerTracker(handle, {
 		avoidPointerEvents: true, // pointers dont seem to work
 		start: (pointer, event) => {
 			if (pointerTracker.currentPointers.length === 1) return false; // track only 1 pointer at a time
@@ -48,11 +48,11 @@ function createHandleTracker(node) {
 			event.preventDefault();
 			event.stopPropagation();
 
-			width = (width || getComputedStyle(node.parentNode)['width'].replace('px', '') || 0) * 1;
-			height = (height || getComputedStyle(node.parentNode)['height'].replace('px', '') || 0) * 1;
+			width = (width || getComputedStyle(handle.parentNode)['width'].replace('px', '') || 0) * 1;
+			height = (height || getComputedStyle(handle.parentNode)['height'].replace('px', '') || 0) * 1;
 
-			shiftX = 0; // pointer.clientX - node.getBoundingClientRect().left;
-			shiftY = 0; // pointer.clientY - node.getBoundingClientRect().top;
+			shiftX = 0; // pointer.clientX - handle.getBoundingClientRect().left;
+			shiftY = 0; // pointer.clientY - handle.getBoundingClientRect().top;
 
 			return true;
 		},
@@ -63,15 +63,18 @@ function createHandleTracker(node) {
 			dx = pointerTracker.currentPointers[0].pageX - previousPointers[0].pageX;
 			dy = pointerTracker.currentPointers[0].pageY - previousPointers[0].pageY;
 
-			// const currentRect = node.parentNode.getBoundingClientRect();
+			// const currentRect = handle.parentNode.getBoundingClientRect();
 			// pointerTracker.currentPointers[0].pageX - shiftX - currentRect.left + 'px';
 			// pointerTracker.currentPointers[0].pageY - shiftY - currentRect.top + 'px';
 
 			width = width + dx;
 			height = height + dy;
 
-			node.parentNode.style.width = width + 'px';
-			node.parentNode.style.height = height + 1 + 'px';
+			// emit customEvent on handle.parentNode
+			handle.parentNode.dispatchEvent(new CustomEvent('resized', { detail: { width, height } }));
+
+			handle.parentNode.style.width = width + 'px';
+			handle.parentNode.style.height = height + 1 + 'px';
 		},
 		end: (pointer, event, cancelled) => {
 			// nothing to do here
