@@ -1,7 +1,7 @@
 <script>
 	export let handle; // bind this var to your custom handle
 	export let trigger; // passed down from resizable.js
-	export let show; // boolean toggle whether to show the resizer handle or not
+	export let show = true; // boolean toggle whether to show the resizer handle or not
 	$: if (handle) trigger(handle); // let the directive know what/where the resize handle is
 </script>
 
