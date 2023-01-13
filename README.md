@@ -17,6 +17,7 @@ The Resize Component will make it's direct parent element resizable.
 
 <div use:resizable>Resize me</div>
 <div use:resizable={{show: false}}>Hidden resizer</div>
+<div use:resizable={{scale: scale}}>Resize if transformed</div>
 <div use:resizable={{Resizer: CustomResizerComponent, show}}>Custom Componenet resizer</div>
 ```
 
@@ -24,14 +25,25 @@ The directive will set the HTMLElement as `relative` if it detects it as `static
 
 ## Customised Resizer Handle
 
-You can use your own custom resizer, just pass your component a param to the Svelte directive. Your component **must** call the resizable-provided `trigger` function with your handle `HTMLElement` as a `param`.
+You can use your own custom resizer, just pass your component a param to the Svelte directive. Your component **must** call the resizable-provided `trigger` function with your handle `HTMLElement` as a `param`. The below example also destroys the mouse tracker when the component is destroyed.
 
 ```svelte
 <script>
-	export let myHandle; // bind this var to your custom handle
+	import { onDestroy } from 'svelte';
+
+	export let handle; // bind this var to your custom handle
 	export let trigger; // passed down from resizable.js
-	export let show; // optional show/hide toggle prop
-	$: if (myHandle) trigger(myHandle); // let the resizable directive know what/where the resize handle is
+	export let show = true; // boolean toggle whether to show the resizer handle or not
+
+	let tracker;
+
+	$: if (handle) {
+		tracker = trigger(handle); // let the directive know what/where the resize handle is
+	}
+
+	onDestroy(() => {
+		tracker.stop(); // stop tracking pointer movements, save memory
+	});
 </script>
 
 {#if show}
