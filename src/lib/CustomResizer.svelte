@@ -1,12 +1,23 @@
 <script>
-	export let handle;
-	export let trigger;
-	export let show; // boolean toggle whether to show the resizer handle or not
-	$: if (handle) trigger(handle); // let the directive know what/where the resize handle is
+	import { onDestroy } from 'svelte';
+
+	export let handle; // bind this var to your custom handle
+	export let trigger; // passed down from resizable.js
+	export let show = true; // boolean toggle whether to show the resizer handle or not
+
+	let tracker;
+
+	$: if (handle) {
+		tracker = trigger(handle); // let the directive know what/where the resize handle is
+	}
+
+	onDestroy(() => {
+		tracker.stop(); // stop tracking pointer movements, save memory
+	});
 </script>
 
 {#if show}
-	<div class="svlt-resizer" bind:this={handle} />
+	<div class="resizer" bind:this={handle} />
 {/if}
 
 <style>
@@ -14,7 +25,7 @@
 		--width: 3em;
 		--line-width: 0.4em;
 	}
-	.svlt-resizer {
+	.resizer {
 		user-select: none;
 		padding: 0.5em;
 
@@ -27,7 +38,7 @@
 		transform: translate(calc(var(--width) / 1), calc(var(--width) / 1));
 		transform-origin: 0 0;
 	}
-	.svlt-resizer::after {
+	.resizer::after {
 		content: '';
 		position: absolute;
 		right: calc(-1 * var(--line-width) / 2);
