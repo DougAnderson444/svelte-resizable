@@ -75,8 +75,7 @@ export function resizable(node, { Resizer = DefaultResizer, show = true, scale =
 
 	return {
 		update(newParams) {
-			// the value of `params` has changed
-			console.log('resizable update', newParams);
+			// the value of `newParams` has changed
 			({ show = show, scale = scale } = newParams);
 			resizer.$set({ show });
 		},
