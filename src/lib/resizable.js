@@ -2,6 +2,7 @@ import { DefaultResizer } from './index';
 import PointerTracker from '@douganderson444/pointer-tracker';
 
 export function resizable(node, { Resizer = DefaultResizer, show = true, scale = 1 } = {}) {
+	let tracker;
 	// check if parent is relative or absolute, if not set it
 	const pos = node.style.position;
 	if (pos !== 'relative' && pos !== 'absolute') {
@@ -11,15 +12,14 @@ export function resizable(node, { Resizer = DefaultResizer, show = true, scale =
 	// mount the Resizer Comp to the node
 	let resizer = new Resizer({
 		target: node,
-		props: {
-			trigger: (handle) => {
-				return createHandleTracker(handle);
-			},
-			show
-		}
+		props: { show }
 	});
+	resizer.$on('ready', (event) => (tracker = createHandleTracker(node, event.detail.handle)));
+	resizer.$set({ mounted: true }); // trigger the event fire to the listener above
 
-	function createHandleTracker(handle) {
+	function createHandleTracker(node, handle) {
+		let pointerTracker;
+
 		let shiftX;
 		let shiftY;
 
@@ -27,7 +27,7 @@ export function resizable(node, { Resizer = DefaultResizer, show = true, scale =
 		let height;
 		let dx, dy;
 
-		let pointerTracker = new PointerTracker(handle, {
+		pointerTracker = new PointerTracker(handle, {
 			avoidPointerEvents: true, // pointers dont seem to work
 			start: (pointer, event) => {
 				if (pointerTracker.currentPointers.length === 1) return false; // track only 1 pointer at a time
@@ -77,12 +77,13 @@ export function resizable(node, { Resizer = DefaultResizer, show = true, scale =
 		update(newParams) {
 			// the value of `newParams` has changed
 			({ show = show, scale = scale } = newParams);
-			resizer.$set({ show });
+			if (resizer) resizer.$set({ show });
 		},
 
 		destroy() {
 			// the node has been removed from the DOM
-			resizer.$destroy();
+			tracker?.stop();
+			if (resizer) resizer.$destroy();
 		}
 	};
 }

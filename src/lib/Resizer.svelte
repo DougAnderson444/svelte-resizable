@@ -1,19 +1,19 @@
 <script>
-	import { onDestroy } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 
-	export let handle; // bind this var to your custom handle
-	export let trigger; // passed down from resizable.js
-	export let show = true; // boolean toggle whether to show the resizer handle or not
+	export let show = true; // optional boolean to toggle whether to show the resizer handle
+	export let mounted = false; // required boolean for parent directive to indicate when mounted has occured
 
-	let tracker;
+	const dispatch = createEventDispatcher();
 
-	$: if (handle) {
-		tracker = trigger(handle); // let the directive know what/where the resize handle is
+	/**
+	 * @type {HTMLDivElement}
+	 */
+	let handle; // bind this var to your custom handle
+
+	$: if (mounted && handle) {
+		dispatch('ready', { handle }); // let the parent know we're ready to track
 	}
-
-	onDestroy(() => {
-		tracker.stop(); // let the directive know that the component is being destroyed
-	});
 </script>
 
 {#if show}
