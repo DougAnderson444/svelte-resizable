@@ -1,8 +1,7 @@
 {
 	"name": "@douganderson444/svelte-resizable",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"module": "index.js",
-	"svelte": "index.js",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -13,6 +12,19 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
+	},
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"import": "./dist/index.js"
+		}
+	},
+	"peerDependencies": {
+		"svelte": "^4.2.7"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
